@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja Namiotow</title>
+</head>
+<body>
+<h1> INFORMACJE O NAMIOCIE </h1>
+<ul>
+    <li>ID: {{ object.id }}</li>
+    <li>ROZMIAR: {{ object.rozmiar }}</li>
+    <li>KOLOR: {{ object.kolor }}</li>
+    <li>STANDARD {{ object.standard }}</li>
+</ul>
+{% if not object.is_reserved %}
+<form action="{% url 'reserve' namiot.id %}">
+     {% csrf_token %}
+    <input type="submit" value="reserve">
+</form>
+{% else %}
+<h3 style="color:red">Namiot zarezerwowany</h3>
+</body>
+{% endif %}
+</html>

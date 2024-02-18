@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja Namiotow</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ROZMIAR</th>
+        <th>KOLOR</th>
+        <th>STANDARD</th>
+        <th></th>
+    </tr>
+{% for namiot in object_list %}
+    <!-- Display Objects -->
+    <tr>
+        <td>{{ namiot.id }}</td>
+        <td>{{ namiot.rozmiar }}</td>
+        <td>{{ namiot.kolor }}</td>
+        <td>{{ namiot.standard }}</td>
+        <td>
+            <form action="{% url 'details' namiot.id %}">
+                 {% csrf_token %}
+                <input type="submit" value="details">
+            </form>
+        </td>
+    </tr>
+
+
+
+{% endfor %}
+</table>
+</body>
+</html>
