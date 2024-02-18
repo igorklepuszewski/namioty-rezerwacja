@@ -5,6 +5,16 @@
     <title>Rezerwacja Namiotow</title>
 </head>
 <body>
+<form action="{% url 'index' %}" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="SEARCH">
+</form>
 <table>
     <tr>
         <th>ID</th>

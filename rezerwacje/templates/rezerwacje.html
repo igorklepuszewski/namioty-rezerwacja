@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja Namiotow</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th></th>
+    </tr>
+{% for rezerwacja in object_list %}
+    <!-- Display Objects -->
+    <tr>
+        <td>{{ rezerwacja.id }}</td>
+        <td>
+            <form action="{% url 'unreserve' rezerwacja.id %}">
+                 {% csrf_token %}
+                <input type="submit" value="unreserve">
+            </form>
+        </td>
+    </tr>
+
+
+
+{% endfor %}
+</table>
+</body>
+</html>

@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rezerwacje.views import NamiotListView, reserve, NamiotDetailView, unreserve
+from rezerwacje.views import NamiotListView, reserve, NamiotDetailView, unreserve, RezerwacjaListView
 
 urlpatterns = [
     path('', NamiotListView.as_view(), name="index"),
+    path('rezerwacje', RezerwacjaListView.as_view(), name="rezerwacje"),
     path('reserve/<int:namiot_id>', reserve, name="reserve"),
     path('unreserve/<int:rezerwacja_id>', unreserve, name="unreserve"),
     path('<int:pk>', NamiotDetailView.as_view(), name="details")
