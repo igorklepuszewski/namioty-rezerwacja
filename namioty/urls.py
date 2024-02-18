@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
+# import routera zeby dodawac endpointy w restframework
+from rest_framework import routers
+# inicjalizacja routera
+default_router = routers.DefaultRouter()
+# deklaracja glownych sciezek w aplikacji
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('namioty/', include('rezerwacje.urls'))
+    path('namioty/', include('rezerwacje.urls')),
+    path('api-auth/', include("rest_framework.urls")),
+    path('api/', include(default_router.urls))
 ]

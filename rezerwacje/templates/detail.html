@@ -5,19 +5,27 @@
     <title>Rezerwacja Namiotow</title>
 </head>
 <body>
+<!--STWORZENIE NAJWIEKSZEGO NAGLOWKA-->
 <h1> INFORMACJE O NAMIOCIE </h1>
+<!--STWORZENIE NIEKOLEJKOWANEJ LISTY ELEMENTOW-->
 <ul>
+<!--    STWORZENIE ELEMENTOW LISTY-->
     <li>ID: {{ object.id }}</li>
     <li>ROZMIAR: {{ object.rozmiar }}</li>
     <li>KOLOR: {{ object.kolor }}</li>
     <li>STANDARD {{ object.standard }}</li>
 </ul>
+<!--JESLI OBIEKT NIE JEST ZAREZERWOWANY-->
 {% if not object.is_reserved %}
+<!--STWORZENIE PRZYCIKU DO REZERWACJI-->
+<!--W ACTION URUCHAMIAMY WIDOK UZYWAJAC JEGO NAME W NASZYM PRZYPADKU reserve I PRZEKAZUJEMY ARGUMENT-->
 <form action="{% url 'reserve' namiot.id %}">
      {% csrf_token %}
     <input type="submit" value="reserve">
 </form>
 {% else %}
+<!--JESLI OBIEKT JEST ZAREZERWOWANY-->
+<!--WYSWIETL INFORMACJE O REZERWACJI-->
 <h3 style="color:red">Namiot zarezerwowany</h3>
 </body>
 {% endif %}

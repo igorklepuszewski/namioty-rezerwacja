@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+# STWORZENIE MODELU NAMIOTU
 class Namiot(models.Model):
     KOLORY_CHOICES = [("ZIELONY", "zielony"), ("CZERWONY", "czerwony"), ("ZOLTY", "zolty")]
     STANDARD_CHOICES = [("PREMIUM", "premium"), ("OK", "ok"), ("BUDGET", "budget")]
@@ -8,13 +9,17 @@ class Namiot(models.Model):
     kolor = models.CharField(max_length=16, choices=KOLORY_CHOICES, default="CZERWONY")
     standard = models.CharField(max_length=16, choices=STANDARD_CHOICES, default="OK")
 
+    # DODANIE DYNAMICZNEGO ATRYBUTU KTORY ZWRACA CZY OBIEKT JEST ZAREJESTROWANY
     @property
     def is_reserved(self):
         try:
+            # wez rezerwacje obiektu
             rez = self.rezerwacja
         except Rezerwacja.DoesNotExist:
+            # jesli nie ma rezerwacji
             return False
         else:
+            # jesli jest rezerwacja
             return True
 
     def __str__(self):
